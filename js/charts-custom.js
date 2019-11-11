@@ -295,7 +295,20 @@ $(document).ready(function () {
         responsive: true
     };
 
-
+     var l= [];
+	 var d=[];
+	 axios.defaults.baseURL="http://localhost:8888/";
+	 axios.get("orders/tenmoney",{
+		 params:{
+		 tid:1
+	 },
+	 })
+	 .then((response)=>{
+		 for(var i in response.data){
+			 l.push(response.data[i].dates);
+			 d.push(response.data[i].sum);
+		 }
+	 
     // ------------------------------------------------------- //
     // Bar Chart
     // ------------------------------------------------------ //
@@ -319,10 +332,10 @@ $(document).ready(function () {
             },
         },
         data: {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            labels: l.reverse(),
             datasets: [
                 {
-                    label: "Data Set 1",
+                    label: "营业额",
                     backgroundColor: [
                         gradient1,
                         gradient1,
@@ -330,18 +343,28 @@ $(document).ready(function () {
                         gradient1,
                         gradient1,
                         gradient1,
-                        gradient1
+                        gradient1,
+						gradient1,
+						gradient1,
+						gradient1
+						
                     ],
                     hoverBackgroundColor: [
-                        gradient1,
-                        gradient1,
-                        gradient1,
-                        gradient1,
-                        gradient1,
-                        gradient1,
-                        gradient1
+                       gradient1,
+                       gradient1,
+                       gradient1,
+                       gradient1,
+                       gradient1,
+                       gradient1,
+                       gradient1,
+                       gradient1,
+                       gradient1,
+                       gradient1
                     ],
                     borderColor: [
+                        gradient1,
+                        gradient1,
+                        gradient1,
                         gradient1,
                         gradient1,
                         gradient1,
@@ -351,43 +374,13 @@ $(document).ready(function () {
                         gradient1
                     ],
                     borderWidth: 1,
-                    data: [65, 59, 80, 81, 56, 55, 40],
+                    data: d.reverse(),
                 },
-                {
-                    label: "Data Set 2",
-                    backgroundColor: [
-                        gradient2,
-                        gradient2,
-                        gradient2,
-                        gradient2,
-                        gradient2,
-                        gradient2,
-                        gradient2
-                    ],
-                    hoverBackgroundColor: [
-                        gradient2,
-                        gradient2,
-                        gradient2,
-                        gradient2,
-                        gradient2,
-                        gradient2,
-                        gradient2
-                    ],
-                    borderColor: [
-                        gradient2,
-                        gradient2,
-                        gradient2,
-                        gradient2,
-                        gradient2,
-                        gradient2,
-                        gradient2
-                    ],
-                    borderWidth: 1,
-                    data: [35, 40, 60, 47, 88, 27, 30],
-                }
+              
             ]
         }
     });
+	})
 
 
 

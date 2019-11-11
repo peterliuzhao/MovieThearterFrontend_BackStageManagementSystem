@@ -36,7 +36,7 @@
                 <div class="info d-flex align-items-center">
                   <div class="content">
                     <div class="logo">  
-                      <h1>影城用户登录</h1>
+                      <h1>影城后台管理系统登录</h1>
                     </div>
                     <p></p>
                   </div>
@@ -85,8 +85,8 @@
     <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
     <script src="vendor/chart.js/Chart.min.js"></script>
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
-    <script src="https://cdn.bootcss.com/vue/2.6.7/vue.common.dev.js"></script>
-    <script src="https://cdn.bootcss.com/axios/0.18.1/axios.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+		<script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
 
@@ -115,8 +115,13 @@
                 uname:this.username,
                 upwd:this.password
               } }
-            ).then(()=>{
-                alert("345");
+            ).then((response)=>{
+                if(response.data.status == 200){
+                  window.location.href='index.html';
+                }
+                else if(response.data.status == 500){
+                  alert("输入信息有误，请核对")
+                }
               });
         }}
       });
